@@ -25,7 +25,7 @@ class LearningAgent(Agent):
         # TODO: Update state
         
         # TODO: Select action according to your policy
-        action = None
+        action = random.choice((None, 'forward', 'left', 'right'))
 
         # Execute action and get reward
         reward = self.env.act(self, action)
@@ -42,6 +42,7 @@ def run():
     e = Environment()  # create environment (also adds some dummy traffic)
     a = e.create_agent(LearningAgent)  # create agent
     e.set_primary_agent(a, enforce_deadline=False)  # set agent to track
+    # import ipdb;ipdb.set_trace()
 
     # Now simulate it
     sim = Simulator(e, update_delay=1.0)  # reduce update_delay to speed up simulation
