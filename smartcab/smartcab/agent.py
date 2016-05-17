@@ -23,7 +23,7 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        state = inputs
+        state = (inputs, deadline)
         
         # TODO: Select action according to your policy
         action = random.choice((None, 'forward', 'left', 'right'))
