@@ -26,11 +26,11 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        action = self.next_waypoint
-        state = tuple(i for i in inputs.iteritems()) + (action,) + (deadline,)
-        
+        state = [i for i in inputs.iteritems()]
+
         # TODO: Select action according to your policy
-        import ipdb;ipdb.set_trace()
+        action = self.next_waypoint
+        state.extend((action, deadline))
 
 
         # Execute action and get reward
