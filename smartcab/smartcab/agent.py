@@ -17,7 +17,6 @@ class LearningAgent(Agent):
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-        import ipdb;ipdb.set_trace()
         self.q_table = []
 
     def update(self, t):
