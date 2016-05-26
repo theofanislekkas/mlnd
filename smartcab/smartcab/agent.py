@@ -12,12 +12,13 @@ class LearningAgent(Agent):
         self.color = 'red'  # override color
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
-        self.q_table = {}
+        self.q_table = []
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-        self.q_table = {}
+        import ipdb;ipdb.set_trace()
+        self.q_table = []
 
     def update(self, t):
         # Gather inputs
@@ -35,6 +36,7 @@ class LearningAgent(Agent):
 
         # Execute action and get reward
         reward = self.env.act(self, action)
+        self.q_table.append(state)
 
         # TODO: Learn policy based on state, action, reward
 
