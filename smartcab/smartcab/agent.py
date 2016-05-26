@@ -1,3 +1,4 @@
+import numpy as np
 import random
 from collections import defaultdict
 from environment import Agent, Environment
@@ -38,6 +39,10 @@ class LearningAgent(Agent):
         self.q_table.append(state)
 
         # TODO: Learn policy based on state, action, reward
+        Q = 0.0 #needs to be saved from update() to update()
+        R = 0.0
+        gamma = 0.0
+        Q = R + (gamma * np.max(Q))
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
