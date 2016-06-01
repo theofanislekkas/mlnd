@@ -44,7 +44,8 @@ class LearningAgent(Agent):
         R = reward #Remove
         gamma = 0.0
         alpha = 0.0
-        self.q = R + (gamma * np.max(Q)) #Update form.
+        self.q += self.q + alpha * (reward +((gamma*np.max(no_idea_how_to_do_this) 
+            - self.q))) #not sure if self.q is the correct q to subtract here.
         # Q(s,a) = (1-alpha)Q(s,a) + alpha(R + gamma*Q(s`,a`)
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
