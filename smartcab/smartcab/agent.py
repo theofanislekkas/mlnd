@@ -43,6 +43,7 @@ class LearningAgent(Agent):
         # TODO: Learn policy based on state, action, reward
         R = reward #Remove
         gamma = 0.0
+        alpha = 0.0
         self.q = R + (gamma * np.max(Q)) #Update form.
         # Q(s,a) = (1-alpha)Q(s,a) + alpha(R + gamma*Q(s`,a`)
 
