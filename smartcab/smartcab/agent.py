@@ -5,6 +5,7 @@ from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
 
+
 class LearningAgent(Agent):
     """An agent that learns to drive in the smartcab world."""
 
@@ -42,13 +43,16 @@ class LearningAgent(Agent):
 
         # TODO: Learn policy based on state, action, reward
         R = reward #Remove
-        gamma = 0.0
-        alpha = 0.0
+        gamma = 0.1
+        alpha = 0.1
+        no_idea_how_to_do_this = 0.0
+        import ipdb;ipdb.set_trace()
         self.q += self.q + alpha * (reward +((gamma*np.max(no_idea_how_to_do_this) 
             - self.q))) #not sure if self.q is the correct q to subtract here.
         # Q(s,a) = (1-alpha)Q(s,a) + alpha(R + gamma*Q(s`,a`)
 
-        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
+        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
+                        deadline, inputs, action, reward)  # [debug]
 
 
 def run():
