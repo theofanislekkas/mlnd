@@ -14,11 +14,13 @@ class LearningAgent(Agent):
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
         self.q_table = []
+        self.q = 0.0
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
         self.q_table = [] #<- this is most likely wrong, reason being the agent has to learn from scratch again.
+        self.q = 0.0
 
     def update(self, t):
         # Gather inputs
@@ -39,10 +41,9 @@ class LearningAgent(Agent):
         self.q_table.append(state)
 
         # TODO: Learn policy based on state, action, reward
-        Q = 0.0 #needs to be saved from update() to update()
         R = reward #Remove
         gamma = 0.0
-        Q = R + (gamma * np.max(Q)) #Update form.
+        self.q = R + (gamma * np.max(Q)) #Update form.
         # Q(s,a) = (1-alpha)Q(s,a) + alpha(R + gamma*Q(s`,a`)
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
