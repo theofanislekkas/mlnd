@@ -35,7 +35,21 @@ class LearningAgent(Agent):
         state = [i for i in inputs.iteritems()]
 
         # TODO: Select action according to your policy
-        action = self.next_waypoint
+        # action = self.next_waypoint
+        for i in self.q_table:
+            temp = []
+            if i[0] == state:
+                temp.append(i)
+                max_action = np.max(i[2]) #get the max pairs action
+            #Look for the max reward in the same state space
+            temp_arr = np.asarray(temp)
+
+        import ipdb;ipdb.set_trace()
+        if self.q_table == []:
+            action = self.next_waypoint
+        else:
+            # action = max_action
+            action = self.next_waypoint
 
         # Execute action and get reward
         reward = self.env.act(self, action)
