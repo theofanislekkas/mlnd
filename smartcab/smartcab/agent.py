@@ -34,22 +34,16 @@ class LearningAgent(Agent):
 
         # TODO: Select action according to your policy
         action = self.next_waypoint
-        state.extend((action, deadline))# Remove deadline, at least for the initial notions of state
-
 
         # Execute action and get reward
         reward = self.env.act(self, action)
-        self.q_table.append(state)
+        self.q_table.append((state, action))
 
         # TODO: Learn policy based on state, action, reward
-        R = reward #Remove
         gamma = 0.1
-        alpha = 0.1
-        no_idea_how_to_do_this = 0.0
-        import ipdb;ipdb.set_trace()
-        self.q += self.q + alpha * (reward +((gamma*np.max(no_idea_how_to_do_this) 
-            - self.q))) #not sure if self.q is the correct q to subtract here.
-        # Q(s,a) = (1-alpha)Q(s,a) + alpha(R + gamma*Q(s`,a`)
+        alpha = 1.0
+        self.q += self.q + alpha * (reward + gamma * np.max(no_idea_how_to_do_this) 
+            - self.q) #not sure if self.q is the correct q to subtract here.
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
                         deadline, inputs, action, reward)  # [debug]
