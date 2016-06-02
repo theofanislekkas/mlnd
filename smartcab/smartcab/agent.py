@@ -1,5 +1,8 @@
+from __future__ import division
+
 import numpy as np
 import random
+
 from collections import defaultdict
 from environment import Agent, Environment
 from planner import RoutePlanner
@@ -20,8 +23,6 @@ class LearningAgent(Agent):
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-        self.q_table = [] #<- this is most likely wrong, reason being the agent has to learn from scratch again.
-        self.q = 0.0
 
     def update(self, t):
         # Gather inputs
@@ -40,7 +41,7 @@ class LearningAgent(Agent):
         self.q_table.append((state, action, reward))
 
         # TODO: Learn policy based on state, action, reward
-        gamma = 0.1
+        gamma = 1 / len(self.q_table)
         alpha = 1.0
         #Tempory list to hold similar states
         max_q = []
