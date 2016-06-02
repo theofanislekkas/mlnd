@@ -23,6 +23,7 @@ class LearningAgent(Agent):
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
+        self.q = 0.0
 
     def update(self, t):
         # Gather inputs
