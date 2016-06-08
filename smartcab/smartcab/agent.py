@@ -23,7 +23,7 @@ class LearningAgent(Agent):
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-        self.q = 0.0
+        self.q = 0.0#Not sure about this here
 
     def update(self, t):
         # Gather inputs
@@ -35,20 +35,18 @@ class LearningAgent(Agent):
         state = [i for i in inputs.iteritems()]
 
         # TODO: Select action according to your policy
-        # action = self.next_waypoint
+        action = self.next_waypoint #--> This def is updated once I can figure out how to find the
+        #action associated with the max value
         for i in self.q_table:
             temp = []
             if i[0] == state:
                 temp.append(i)
-                max_action = np.max(i[2]) #get the max pairs action
             #Look for the max reward in the same state space
             temp_arr = np.asarray(temp)
 
-        import ipdb;ipdb.set_trace()
-        if self.q_table == []:
-            action = self.next_waypoint
-        else:
-            # action = max_action
+        if 'max_action' in locals():
+            action = max_action
+        elif self.q_table == []:
             action = self.next_waypoint
 
         # Execute action and get reward
