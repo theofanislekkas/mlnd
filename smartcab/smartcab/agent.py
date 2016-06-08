@@ -52,20 +52,32 @@ class LearningAgent(Agent):
 
         # Execute action and get reward
         reward = self.env.act(self, action)
-        self.q_table.append((state, action, reward))
 
         # TODO: Learn policy based on state, action, reward
-        gamma = 1 / len(self.q_table)
         alpha = 1.0
-        #Tempory list to hold similar states
-        max_q = []
 
-        #Loop through q_table to get all rewards for identical state/action pairs
-        for i in self.q_table:
-            if i[0] == state:
-                max_q.append(i[2])
+        if self.q_table == []:
+            gamma = 1
+            self.q += self.q + alpha * (reward + gamma * 0 - self.q)
+        else:
+            gamma = 1 / len(self.q_table)
+            #Tempory list to hold similar states
+            if self.q_table == []:
+                max_q = [0]
+            else:
+                max_q = []
 
-        self.q += self.q + alpha * (reward + gamma * np.max(max_q) - self.q)
+            #Loop through q_table to get all rewards for identical state/action pairs
+            for i in self.q_table:
+                if i[0] == state:
+                    max_q.append(i[2])
+
+            if max_q == []:
+                max_q = [0]
+
+            self.q += self.q + alpha * (reward + gamma * np.max(max_q) - self.q)
+
+        self.q_table.append((state, action, reward, self.q))
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
                         deadline, inputs, action, reward)  # [debug]
