@@ -35,7 +35,6 @@ class LearningAgent(Agent):
         state = [i for i in inputs.iteritems()]
 
         # TODO: Select action according to your policy
-        action = self.next_waypoint
         temp_list = []
         if self.q_table != []:
             for i in self.q_table:
@@ -44,6 +43,11 @@ class LearningAgent(Agent):
 
                 if temp_list != []:
                     max_action = max(temp_list, key=lambda x: x[1])[0]
+                    action = max_action
+                else:
+                    action = self.next_waypoint
+        else:
+            action = self.next_waypoint
 
         # Execute action and get reward
         reward = self.env.act(self, action)
