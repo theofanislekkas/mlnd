@@ -35,7 +35,15 @@ class LearningAgent(Agent):
         state = [i for i in inputs.iteritems()]
 
         # TODO: Select action according to your policy
-        action = self.next_waypoint #--> This def is updated once I can figure out how to find the
+        action = self.next_waypoint
+        temp_list = []
+        if self.q_table != []:
+            for i in self.q_table:
+                if i[0] == state:
+                    temp_list.append(i[1:])
+
+                if temp_list != []:
+                    max_action = max(temp_list, key=lambda x: x[1])[0]
 
         # Execute action and get reward
         reward = self.env.act(self, action)
