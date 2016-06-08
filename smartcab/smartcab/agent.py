@@ -36,18 +36,6 @@ class LearningAgent(Agent):
 
         # TODO: Select action according to your policy
         action = self.next_waypoint #--> This def is updated once I can figure out how to find the
-        #action associated with the max value
-        for i in self.q_table:
-            temp = []
-            if i[0] == state:
-                temp.append(i)
-            #Look for the max reward in the same state space
-            temp_arr = np.asarray(temp)
-
-        if 'max_action' in locals():
-            action = max_action
-        elif self.q_table == []:
-            action = self.next_waypoint
 
         # Execute action and get reward
         reward = self.env.act(self, action)
