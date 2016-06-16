@@ -19,11 +19,13 @@ class LearningAgent(Agent):
         # TODO: Initialize any additional variables here
         self.q_table = []
         self.q = 0.0
+        self.state = ''
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
         self.q = 0.0#Not sure about this here
+        self.state = ''
 
     def update(self, t):
         # Gather inputs
@@ -32,8 +34,8 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        state = [i for i in inputs.iteritems()]
-        state.append(self.next_waypoint)
+        self.state = [i for i in inputs.iteritems()]
+        self.state.append(self.next_waypoint)
 
         # TODO: Select action according to your policy
         temp_list = []
@@ -41,7 +43,7 @@ class LearningAgent(Agent):
             action = self.next_waypoint
         else:
             for i in self.q_table:
-                if i[0] == state:
+                if i[0] == self.state:
                     temp_list.append((i[0][-1], i[1:]))
 
                 if temp_list == []:
@@ -70,7 +72,7 @@ class LearningAgent(Agent):
 
             #Loop through q_table to get all rewards for identical state/action pairs
             for i in self.q_table:
-                if i[0] == state:
+                if i[0] == self.state:
                     max_q.append(i[2])
 
             if max_q == []:
@@ -78,7 +80,7 @@ class LearningAgent(Agent):
 
             self.q += self.q + alpha * (reward + gamma * np.max(max_q) - self.q)
 
-        self.q_table.append((state, reward, self.q))
+        self.q_table.append((self.state, reward, self.q))
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
                         deadline, inputs, action, reward)  # [debug]
