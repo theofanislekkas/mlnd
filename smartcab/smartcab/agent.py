@@ -42,12 +42,12 @@ class LearningAgent(Agent):
         else:
             for i in self.q_table:
                 if i[0] == state:
-                    temp_list.append(i[1:])
+                    temp_list.append((i[0][-1], i[1:]))
 
                 if temp_list == []:
                     action = self.next_waypoint
                 else:
-                    max_action = max(temp_list, key=lambda x: x[1])[0]
+                    max_action = max(temp_list, key=lambda x: x[0][1][0])[0]
                     action = max_action
   
 
@@ -78,7 +78,7 @@ class LearningAgent(Agent):
 
             self.q += self.q + alpha * (reward + gamma * np.max(max_q) - self.q)
 
-        self.q_table.append((state, action, reward, self.q))
+        self.q_table.append((state, reward, self.q))
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
                         deadline, inputs, action, reward)  # [debug]
