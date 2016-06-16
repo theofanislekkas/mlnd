@@ -33,6 +33,7 @@ class LearningAgent(Agent):
 
         # TODO: Update state
         state = [i for i in inputs.iteritems()]
+        state.append(self.next_waypoint)
 
         # TODO: Select action according to your policy
         temp_list = []
