@@ -57,12 +57,12 @@ class LearningAgent(Agent):
         reward = self.env.act(self, action)
 
         # TODO: Learn policy based on state, action, reward
-        alpha = 1.0
-
         if self.q_table == []:
+            alpha = 1
             gamma = 1
             self.q += self.q + alpha * (reward + gamma * 0 - self.q)
         else:
+            alpha = 1 / len(self.q_table)
             gamma = 1 / len(self.q_table)
             #Tempory list to hold similar states
             if self.q_table == []:
