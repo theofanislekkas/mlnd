@@ -20,12 +20,14 @@ class LearningAgent(Agent):
         self.q_table = []
         self.q = 0.0
         self.state = ''
+        self.total_reward = 0
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
         self.q = 0.0#Not sure about this here
         self.state = ''
+        self.total_reward = 0
 
     def update(self, t):
         # Gather inputs
@@ -55,6 +57,7 @@ class LearningAgent(Agent):
 
         # Execute action and get reward
         reward = self.env.act(self, action)
+        self.total_reward += reward
 
         # TODO: Learn policy based on state, action, reward
         if self.q_table == []:
@@ -82,8 +85,8 @@ class LearningAgent(Agent):
 
         self.q_table.append((self.state, reward, self.q))
 
-        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(
-                        deadline, inputs, action, reward)  # [debug]
+        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}, total reward = {}".format(
+                        deadline, inputs, action, reward, self.total_reward)  # [debug]
 
 
 def run():
@@ -92,7 +95,7 @@ def run():
     # Set up environment and agent
     e = Environment()  # create environment (also adds some dummy traffic)
     a = e.create_agent(LearningAgent)  # create agent
-    e.set_primary_agent(a, enforce_deadline=False)  # set agent to track
+    e.set_primary_agent(a, enforce_deadline=True)  # set agent to track
 
     # Now simulate it
     sim = Simulator(e, update_delay=1.0)  # reduce update_delay to speed up simulation
