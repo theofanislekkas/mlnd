@@ -21,6 +21,7 @@ class LearningAgent(Agent):
         self.q = 0.0
         self.state = ''
         self.total_reward = 0
+        self.trial_count = 0
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
@@ -28,6 +29,7 @@ class LearningAgent(Agent):
         self.q = 0.0#Not sure about this here
         self.state = ''
         self.total_reward = 0
+        self.trial_count += 1
 
     def update(self, t):
         # Gather inputs
