@@ -1,30 +1,23 @@
--- Notes:
-RSI ML Strat:
+##Download & Install Anaconda:
 
-- Decision tree
-- Logistic regression
+Follow the instructions here:
+  https://www.continuum.io/downloads
 
-RSI daily
--- 14 day
--- 9 day
--- Diff defs of overbought & over sold
+##Create a conda environment:
 
-Strat
--> Buy oversold on daily
--> Sell on overbought
-
-Params
--- Stock $5 >=
--- Market Cap >= 400mm
--- Daily Vol >= 600k shares
-
-•Compare ML to backtest
-•Figure out data acquistion
-•Lookback period?
-
--- Installs:
-`conda install -c anaconda quandl=2.8.9`
 `conda create --name rsi --file requirements.txt`
 
--- Environments:
+##Activate environment:
 `source activate rsi`
+
+##Software Used
+Anaconda for Python 2.7
+ - A Python distribution which includes the conda package/environment manager
+Pandas 0.18.0
+ - A data analytics software package
+Numpy 1.10.4
+ - A numerical analysis software package
+iPython
+ - An interactive shell software package
+Jupyter
+ - An interactive notebook environment software package
