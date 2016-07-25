@@ -21,3 +21,5 @@ iPython
  - An interactive shell software package
 Jupyter
  - An interactive notebook environment software package
+
+Any software not explicitly mentioned here is support software and listed in the requirements.txt file.
