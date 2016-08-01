@@ -21,3 +21,13 @@ A basic requirements file is included.  Note that the rsi project has a separate
 `source activate mlnd`
 
 conda docs: http://conda.pydata.org/docs/using/envs.html
+
+## Installing Pygame
+
+in order to install Pygame the following command needs to be run:
+
+`conda install -c https://conda.binstar.org/quasiben pygame`
+
+Here you are adding user quasiben's channel to your Anaconda/Miniconda distribution and installing the package from there.  Make certain that you have activated your environment before you install the pygame package.
+
+To learn more about binstar/Anaconda Cloud start at the following link: https://conda.anaconda.org/
