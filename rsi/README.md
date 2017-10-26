@@ -1,7 +1,7 @@
 ## Download & Install Anaconda:
 
 Follow the instructions here:
-  https://www.continuum.io/downloads
+  https://www.anaconda.com/download/
 
 ## Create a conda environment:
 
