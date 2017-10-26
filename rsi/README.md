@@ -1,13 +1,13 @@
-##Download & Install Anaconda:
+## Download & Install Anaconda:
 
 Follow the instructions here:
   https://www.continuum.io/downloads
 
-##Create a conda environment:
+## Create a conda environment:
 
 `conda create --name rsi --file requirements.txt`
 
-##Activate environment:
+## Activate environment:
 `source activate rsi`
 
 ##Software Used
