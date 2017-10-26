@@ -10,7 +10,7 @@ Follow the instructions here:
 ## Activate environment:
 `source activate rsi`
 
-##Software Used
+## Software Used
 Anaconda for Python 2.7
  - A Python distribution which includes the conda package/environment manager
 Pandas 0.18.0
