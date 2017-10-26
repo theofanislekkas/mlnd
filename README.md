@@ -1,4 +1,4 @@
-#Machine Learning Nano Degree Repo
+# Machine Learning Nano Degree Repo
 
 This is a general repository for Udacity's MLND program.  Each directory represents a different machine learning project.  All of these projects rely on the Python data ecosystem & Jupyter notebooks.  For best results download the Anaconda Python distribution and create a conda environment.
 
